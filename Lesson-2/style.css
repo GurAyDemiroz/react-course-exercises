@@ -1,0 +1,43 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.chatbot-container {
+    max-width: 37.5rem;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    margin: auto;
+}
+
+.chat-input-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 1.25rem;
+    /* background-color: aliceblue; */
+    gap: 20px;
+    width: 100%;
+}
+
+.chat-input-container > input {
+    font-size: 1rem;
+    border: 1px solid gray;
+    border-radius: 10px;
+    padding: 12px 20px;
+    width: 100%;
+}
+
+.chat-input-container > button {
+    border-radius: 10px;
+    padding: 12px 25px;
+    height: 100%;
+    background-color: green;
+    border: none;
+    color: white;
+    cursor: pointer;
+}

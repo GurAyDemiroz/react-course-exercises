@@ -15,7 +15,16 @@
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
 
-     
+      function ChatInput(){
+        return (
+          <div className="chatbot-container">
+            <div className="chat-input-container">
+              <input type="text" placeholder="Send a message to Chatbot" />
+              <button>Send</button>  
+            </div>
+          </div>
+        );
+      }
 
 
       const container = document.querySelector('.js-container');

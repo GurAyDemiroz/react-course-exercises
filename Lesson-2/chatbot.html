@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Chatbot</title>
+    <link rel="stylesheet" href="./style.css">
   </head>
   <body>
     <div class="js-container"></div>
@@ -14,19 +15,11 @@
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
 
-      const button = <button>hello</button>;
+     
 
-      const paragraph = <p>paragraph of text</p>;
-
-      const div = (
-        <div>
-          <button>hello</button>
-          <p>paragraph of text {2 + 91}</p>
-        </div>
-      );
 
       const container = document.querySelector('.js-container');
-      ReactDOM.createRoot(container).render(div);
+      ReactDOM.createRoot(container).render(ChatInput());
     </script>
   </body>
 </html>

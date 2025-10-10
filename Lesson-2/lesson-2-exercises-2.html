@@ -2,6 +2,41 @@
 <html>
   <head>
     <title>Exercise 2.1</title>
+
+    <style>
+      .products-div {
+        margin: auto;
+        padding: 1rem;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: center;
+      }
+
+      .product {
+        width: 10rem;
+        background-color: aliceblue;
+        padding: 16px;
+        border: 1px solid rgb(176, 176, 176);
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .product > button {
+        display: block;
+        width: 90%;
+        padding: 10px;
+        background-color: rgb(74, 189, 255);
+        color: rgb(63, 63, 63);
+        border: 1px solid rgb(1, 103, 162);
+        border-radius: 0.5rem;
+        cursor: pointer;
+      }
+    </style>
   </head>
   <body>
     <div class="js-container"></div>
@@ -13,16 +48,77 @@
 
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
-
-      
-
-      function App(){
+      function ProductDetails({
+        productName,
+        productPrice,
+        discountPrice,
+        imageSrc,
+      }) {
         return (
-            <></>
+          <div className="product">
+            <img src={imageSrc} alt={productName} width="150" />
+            <div className="product-info">
+              <p>{productName}</p>
+              {discountPrice ? (
+                <>
+                  <p style={{ textDecoration: "line-through" }}>
+                    Price: ${productPrice}
+                  </p>
+                  <p>Discount Price: ${discountPrice}</p>
+                </>
+              ) : (
+                <p>Price: ${productPrice}</p>
+              )}
+            </div>
+            <button>Add to Cart</button>
+          </div>
         );
       }
 
-      const container = document.querySelector('.js-container');
+      function App() {
+        return (
+          <div className="products-div">
+            <ProductDetails
+              productName="Cotton Socks"
+              productPrice="10.90"
+              discountPrice="5"
+              imageSrc="./images/cotton-socks.png"
+            />
+            <ProductDetails
+              productName="Tennis balls"
+              productPrice="6.00"
+              discountPrice=""
+              imageSrc="./images/tennis-balls.png"
+            />
+            <ProductDetails
+              productName="Plain T-shirt"
+              productPrice="7.99"
+              discountPrice=""
+              imageSrc="./images/plain-t-shirt.png"
+            />
+            <ProductDetails
+              productName="Cotton Socks"
+              productPrice="10.90"
+              discountPrice="5"
+              imageSrc="./images/cotton-socks.png"
+            />
+            <ProductDetails
+              productName="Tennis balls"
+              productPrice="6.00"
+              discountPrice=""
+              imageSrc="./images/tennis-balls.png"
+            />
+            <ProductDetails
+              productName="Plain T-shirt"
+              productPrice="7.99"
+              discountPrice=""
+              imageSrc="./images/plain-t-shirt.png"
+            />
+          </div>
+        );
+      }
+
+      const container = document.querySelector(".js-container");
       ReactDOM.createRoot(container).render(<App />);
     </script>
   </body>

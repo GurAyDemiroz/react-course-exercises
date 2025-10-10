@@ -26,9 +26,25 @@
         );
       }
 
+      function ChatMessage(){
+        return (
+          <div>
+            Hello Chatbot
+            <img src="./images/user-profile.jpg" alt="Profile" />
+          </div>
+        );
+      }
+
+      const App = (
+        <>
+          <ChatInput />
+          <ChatMessage />
+        </>
+      );
+
 
       const container = document.querySelector('.js-container');
-      ReactDOM.createRoot(container).render(ChatInput());
+      ReactDOM.createRoot(container).render(App);
     </script>
   </body>
 </html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Exercise 2</title>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="./react-basics.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+      //2a
+      //   function App() {
+      //     return (
+      //         <div>
+      //             <p>Hello, welcom te my website</p>
+      //         </div>
+      //     );
+      //   }
+
+      // 2b
+      //   function App() {
+      //     return (
+      //         <div>
+      //             <p>Hello, welcom te my website</p>
+      //             <button>Login</button>
+      //             <button>Sign up</button>
+      //         </div>
+      //     );
+      //   }
+
+      //2c
+      //   function App() {
+      //     return (
+      //         <div>
+      //             <p>Hello, welcom te my website</p>
+      //             <div>
+      //                 <input type="text" placeholder="Email"/>
+      //             </div>
+      //             <div>
+      //                 <input type="password" placeholder="Password"/>
+      //             </div>
+      //             <button>Login</button>
+      //             <button>Sign up</button>
+      //         </div>
+      //     );
+      //   }
+
+      //2d
+      function LoginForm() {
+        return (
+          <div>
+            <div>
+              <input type="text" placeholder="Email" />
+            </div>
+            <div>
+              <input type="password" placeholder="Password" />
+            </div>
+            <button>Login</button>
+            <button>Sign up</button>
+          </div>
+        );
+      }
+
+      function App() {
+        return (
+          <>
+            <p>Hello, welcom te my website</p>
+
+            <LoginForm />
+          </>
+        );
+      }
+
+      const container = document.querySelector(".js-container");
+      ReactDOM.createRoot(container).render(<App />);
+    </script>
+  </body>
+</html>

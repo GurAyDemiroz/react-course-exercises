@@ -12,17 +12,49 @@
     <script src="https://unpkg.com/supersimpledev/react.js"></script>
     <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
 
+    <script src="https://unpkg.com/supersimpledev/chatbot.js"></script>
+
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
-    
+
     <script type="text/babel">
-      function ChatInput() {
+      function ChatInput({ chatMessages, setChatMessages }) {
+        const [inputText, setInputText] = React.useState("");
+
+        const saveInputText = (event) => {
+          // console.log(event.target.value);
+          setInputText(event.target.value);
+        };
+
+        const sendMessage = () => {
+          console.log(inputText);
+          if (inputText) {
+            setChatMessages([
+              ...chatMessages,
+              {
+                message: inputText,
+                sender: "user",
+              },
+              {
+                message: Chatbot.getResponse(inputText),
+                sender: "robot"
+              }
+            ]);
+          }
+          setInputText("");
+        };
+
         return (
           <div className="chatbot-container">
             <div className="chat-input-container">
-              <input 
-                type="text" 
-                placeholder="Send a message to Chatbot" />
-              <button>Send</button>
+              <input
+                type="text"
+                placeholder="Send a message to Chatbot"
+                onChange={saveInputText}
+                value={inputText}
+              />
+              <button className="message-sender-btn" onClick={sendMessage}>
+                Send
+              </button>
             </div>
           </div>
         );
@@ -60,7 +92,17 @@
 
             {sender === "robot" ? (
               <p className="message-p">{message}</p>
-            ) : <p style={{ backgroundColor: 'rgba(0, 203, 0, 0.687)', border:'1px solid rgb(0, 132, 0)' }} className="message-p">{message}</p> }
+            ) : (
+              <p
+                style={{
+                  backgroundColor: "rgba(0, 203, 0, 0.687)",
+                  border: "1px solid rgb(0, 132, 0)",
+                }}
+                className="message-p"
+              >
+                {message}
+              </p>
+            )}
 
             {sender === "user" && (
               <img src="./images/user.png" alt="Profile" width="50" />
@@ -68,21 +110,72 @@
           </div>
         );
       }
-      
+
+      function ChatMessages({ chatMessages }) {
+        // const [chatMessages, setChatMessages] = array; // yazılan sıra çok önemli, ilki her zaman değerleri barındırır diğeri fonksiyonu
+        // const chatMessages = array[0]; // güncel değerleri barındırır ilk öge
+        // const setChatMessages = array[1]; // değerleri güncelleyen fonskiyonu barındırır. updater function
+
+        // chatMessages.push({
+        //   message: "test",
+        //   sender: "user",
+        // });
+
+        // console.log(chatMessages);
+
+        return (
+          <>
+            <div className="message-container">
+              {chatMessages.map((chatMessage, _idx) => {
+                return (
+                  <ChatMessage
+                    message={chatMessage.message}
+                    sender={chatMessage.sender}
+                    key={_idx}
+                  />
+                );
+              })}
+            </div>
+          </>
+        );
+      }
 
       function App() {
+        // const chatMessageComponents = chatMessages.map((chatMessage) => {
+        //   return (
+        //     <ChatMessage
+        //       message={chatMessage.message}
+        //       sender={chatMessage.sender}
+        //     />
+        //   );
+        // });
+
+        const [chatMessages, setChatMessages] = React.useState([
+          {
+            message: "Merhaba Chatbot",
+            sender: "user",
+          },
+          {
+            message: "Merhaba nasıl yardımcı olabilirim?",
+            sender: "robot",
+          },
+          {
+            message: "Bugün günlerden ne?",
+            sender: "user",
+          },
+          {
+            message: "Bugün günlerden October 17",
+            sender: "robot",
+          },
+        ]);
+
         return (
           <div className="app-container">
-            <ChatInput />
-            <div className="message-container">
-              <ChatMessage message="Merhaba Chatbot" sender="user" />
-              <ChatMessage
-                message="Merhaba nasıl yardımcı olabilirim?"
-                sender="robot"
-              />
-              <ChatMessage message="Bugün günlerden ne?" sender="user" />
-              <ChatMessage message="Bugün günlerden October 10" sender="robot" />
-            </div>
+            <ChatInput
+              chatMessages={chatMessages}
+              setChatMessages={setChatMessages}
+            />
+            <ChatMessages chatMessages={chatMessages} />
           </div>
         );
       }

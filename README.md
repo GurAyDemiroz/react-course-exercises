@@ -6,3 +6,4 @@ Bu repo, YouTube üzerinden takip ettiğim [React Tutorial Full Course - Beginne
 
 - **Lesson-1:** React Basics ve JSX
 - **Lesson-2:** Components, Props, Start the Chatbot Project
+- **Lesson-3:** State, Event Handlers, Chatbot Project Features
